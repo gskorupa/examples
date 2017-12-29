@@ -1,13 +1,13 @@
 # Cricket for web development: static website
 
-Java is generally not a language of choice used to build websites when you have limitted resources.
-This is partly due to the fact that most popular Java application servers or portal platforms are very complex and often require considerable knowledge in order to be able to use them effectively. For this reason developers of websites choose other tools, such as for example the LAMP platform, to implement simple solutions.
+Java is generally not a language of choice when it comes to build websites.
+This is because most of the popular application servers are very complex and require a lot of learning to use them efficiently. For this reason web developers choose other tools, such as for example the LAMP platform, to succeed.
 
-However, if PHP isn't your preferred programming language and the website must be extended with additional functionality, you have to choose between modifying the current solution (with which you don't feel comfortable) or changing the platform to another one.
-
-Fortunately, there is another option we can choose to create solutions quickly and easily from the very beginning, taking advantage of the huge potential of the Java language.
+Fortunately, there is another option to avoid investing in tools that we do not prefer and to use the huge potential of Java instead.
 
 [Cricket MSF](https://cricketmsf.org) allows us to build a variety of backend and web application solutions: from static websites through dynamic webapps to multi-node systems using micro services architecture.
+
+Cricket has been designed from the beginning as a microservice framework, so it can also be used to run a website service. In the future, we will be able to extend our website with new functionalities by adding more services.
 
 ## Preparing the website
 
