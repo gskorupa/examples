@@ -5,7 +5,7 @@ This is because most of the popular application servers are very complex and req
 
 Fortunately, there is another option to avoid investing in tools that we do not prefer and to use the huge potential of Java instead.
 
-[Cricket MSF](https://cricketmsf.org) allows us to build a variety of backend and web application solutions: from static websites through dynamic webapps to multi-node systems using micro services architecture. 
+[Cricket MSF](http://www.cricketmsf.org) allows us to build a variety of backend and web application solutions: from static websites through dynamic webapps to multi-node systems using micro services architecture. 
 Cricket has been designed from the beginning as a microservice framework, so it can also be used to run a website service. In the future, you will be able to extend your website with new functionalities by adding more services.
 
 In this article we will show you how to start.
