@@ -50,7 +50,7 @@ When run with `-it` option, we can see the service output on the terminal and ca
 
 Our newly created website is visible at http://localhost:8080
 
-## Running the website on Java
+## Running the website on plain Java
 
 It is also easy to run our website without Docker when we have Java 8 or 9 installed. One additional step in this case is downloading the Cricket MSF library.
 
