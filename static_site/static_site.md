@@ -21,7 +21,7 @@ To prepare our website we need to:
 To create our example website we will use "Ballet One Page Free Website Template" offered for free by WebThemez
 https://webthemez.com/ballet-one-page-free-website-template/
 
-This website consists of one HTML file (index.html) with supporting CSS and JS files located in subfolders. All the website content is contained in index.html so we can modify texts and images easily.
+This template consists of one HTML file (index.html) with supporting CSS and JavaScript files located in subfolders. All the website content is contained in index.html so we can modify texts and images easily.
 The one exception is the contact form located at the bottom of the webpage. Originally, PHP must be installed on the server to handle request from this form. Required PHP and JavaScript files are not provided with the free version of the template but this is OK for us because we do not want to use PHP in our solution. Let's put this part of the website on hold for a while - we will return to this in the upcoming article, while discussing dynamic websites.
 
 Our procedure consists of several simple steps, as shown in the following example. 
