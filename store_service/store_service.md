@@ -18,7 +18,37 @@ To do the we will need:
 * run
 * test
 
-Przykład 
+
+```
+# create service folder
+mkdir mystore
+cd mystore
+# download library and source codes
+wget https://github.com/Cricket/releases/1.2.33/cricket-1.2.33.jqr
+wget https://github.com/signocom/examples/raw/master/store_service/Product.java
+wget https://github.com/signocom/examples/raw/master/store_service/StoreService.java
+wget https://github.com/signocom/examples/raw/master/store_service/cricket.json
+# complie
+javac -cp.:cricket-1.2.33.jar StoreService.java
+# run
+java -cp .:cricket-1.2.33.jar org.cricketmsf.Runner -r -c cricket.json
+```
+If all goes OK the servcice should print on the terminal:
+```
+aaa
+```
+The service exposes our store API at http://localhost:8080/api/store
+
+We can create add new product by sending POST request
+```
+curl 
+```
+and read all stored products or selected product by sending GET requests
+```
+curl http://localhost:8080/api/store
+
+curl http://localhost:8080/api/store/p001
+```
 
 ## Now let's see how this is done 
 
