@@ -24,7 +24,7 @@ To do the we will need:
 mkdir mystore
 cd mystore
 # download library and source codes
-wget https://github.com/Cricket/releases/1.2.33/cricket-1.2.33.jqr
+wget https://github.com/gskorupa/Cricket/releases/download/1.2.33/cricket-1.2.33.jar
 wget https://github.com/signocom/examples/raw/master/store_service/Product.java
 wget https://github.com/signocom/examples/raw/master/store_service/StoreService.java
 wget https://github.com/signocom/examples/raw/master/store_service/cricket.json
