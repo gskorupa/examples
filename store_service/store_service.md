@@ -51,21 +51,36 @@ curl http://localhost:8080/api/store/p001
 
 ## Now let's see how this is done 
 
-Assuming that you have run the example as described in the previous section, we can look at the Product source Code. To keep Things simple the example has no getters and setters but it's up to you, as well as adding mogę fields.
+Assuming that you have run the example as described in the previous section, we can look at the Product source Code. To keep Things simple the example has no getters and setters but it's up to you, as well as adding more fields.
 
-KOD
+```
+//Product.java
+public class Product {
+
+    public String id;
+    public String name;
+    public String sku;
+    public String unit;
+    public Double unitPrice;
+
+    public Product() {
+    }
+}
+```
 
 Then let's create our service class, one that will be run by the Cricket's runtime. In our example this is StoreService. Let's look inside the file.
 
 Major part of the code is default for a typical Cricket service, providing event support, login, key-value database declaration and file readout for http server.
 The business logic of our store API is contained in two methods.
 
-KOD i opis metod
+```
 
-Do uruchomienia serwisu będziemy potrzebowali pliku konfiguracyjnego. Najprościej będzie go wyciągnąć z biblioteki.
-Podmieniamy klasę serwisu, konfigurujemy i uruchamiamy. Na razie nasz serwis jeszcze nie robi tego co planujemy, ale jak widać po uruchomieniu nasluchuje na wybranym porcie na requesty http.
+```
 
-Czas zatem uruchomić nasze API.
+Now we need to look at the configuration file where all adapters used by our service and the service itself is configured. 
+The JSON format of the file is not complicated and should be self explanatory.
+Zwróćmy uwagę na najważniejsze dla naszego przykładu elementy.
+TODO
 
 Modyfikujemy cricket.json deklarujac standardowy adapter http nasluchujacy na ścieżce /api/store (jak pamiętamy, nasz serwis będzie dostępny pod adresem http://localhost:8080)
 
