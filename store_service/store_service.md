@@ -11,7 +11,7 @@ To do the we will need:
 * StoreService class - implementing our service logic
 * configuration file
 
-## First the method for impatient ones, i. e. the microservice in 5 minutes.
+## First the method for the impatient, i.e. microservice in 5 minutes.
 
 * download library and the source codes
 * compile
