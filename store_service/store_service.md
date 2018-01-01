@@ -19,16 +19,19 @@ To do the we will need:
 * test
 
 ```
-# create service folder
+# create the service folder
 mkdir mystore
 cd mystore
+
 # download library and source codes
 wget https://github.com/gskorupa/Cricket/releases/download/1.2.33/cricket-1.2.33.jar
 wget https://github.com/signocom/examples/raw/master/store_service/Product.java
 wget https://github.com/signocom/examples/raw/master/store_service/StoreService.java
 wget https://github.com/signocom/examples/raw/master/store_service/cricket.json
+
 # complie
 javac -cp.:cricket-1.2.33.jar StoreService.java
+
 # run
 java -cp .:cricket-1.2.33.jar org.cricketmsf.Runner -r -c cricket.json
 ```
@@ -196,9 +199,9 @@ The last part of the puzzle is the configuration file where all adapters used by
                 "time-zone": "GMT"
             },
             "adapters": {
-                "StoreService": {
+                "StoreAPI": {
                     "@type": "org.cricketmsf.config.AdapterConfiguration",
-                    "name": "StoreService",
+                    "name": "StoreAPI",
                     "interfaceName": "HttpAdapterIface",
                     "classFullName": "org.cricketmsf.in.http.StandardHttpAdapter",
                     "description": "The service class responsible for the product store businness logic.",
@@ -267,4 +270,7 @@ Rezultat wykonania tych metod zostań następnie przetransformowany do typu appl
 
 Możemy już przetestować.
 
-W kolejnym odcinku - WEB GUI
+# Summary
+In the article we saw how to quickly prepare a prototype of the service, taking as an example a simple product store. We used a small part of the Cricket backbone functionality, such as the built-in HTTP server and database, automatic serialization of objects by adapters inheriting HttpAdapter class and dependency injection controlled by a configuration file.
+
+It would also be nice to have a simple web interface that allows us to use the service through a web browser. But this will be the subject of another article.
