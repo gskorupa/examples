@@ -271,6 +271,8 @@ Rezultat wykonania tych metod zostań następnie przetransformowany do typu appl
 Możemy już przetestować.
 
 # Summary
-In the article we saw how to quickly prepare a prototype of the service, taking as an example a simple product store. We used a small part of the Cricket backbone functionality, such as the built-in HTTP server and database, automatic serialization of objects by adapters inheriting HttpAdapter class and dependency injection controlled by a configuration file.
+In the article we saw how to quickly prepare a prototype of the service, taking as an example a simple product store. 
+
+We used a small part of the Cricket framework functionality, such as the built-in HTTP server and key-value database, automatic object serialization by adapters inheriting HttpAdapter and Dependency Injection controlled by a configuration file.
 
 It would also be nice to have a simple web interface that allows us to use the service through a web browser. But this will be the subject of another article.
