@@ -277,8 +277,10 @@ Możemy już przetestować.
 Probably the reader of the article already realised how the elements of the service are linked together.
 
 In short, the Dependency Injection mechanism in the Cricket framework is controlled in two places:
+
 * the configuration file defines the late-binding of adapters interfaces with their implementing classes
 * in the service source code, adapters are bound with the handling methods by using annotations
+
 This approach keeps Dependency Injection magic at the lowest possible level, so that we can quickly realize how the service works.
 
 # Summary
