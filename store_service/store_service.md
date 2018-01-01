@@ -40,7 +40,7 @@ The service exposes our store API at http://localhost:8080/api/store
 
 We can add new product by sending POST request
 ```
-curl 
+curl --data="id=p001&sku=abc123&unit=kg&unitPrice=1.5&name='My first product'" http://localhost:8080/api/store
 ```
 and read all stored products or selected product by sending GET requests
 ```
@@ -70,8 +70,8 @@ public class Product {
 
 Then let's create our service class, one that will be run by the Cricket's runtime. In our example this is StoreService. Let's look inside the file.
 
-Major part of the code is default for a typical Cricket service, providing event support, login, key-value database declaration and file readout for http server.
-The business logic of our store API is contained in two methods.
+Major part of the code is default for a typical Cricket service, providing event support, logging, key-value database initialization and file readout for embeded http server.
+The business logic of our store API is contained in two methods: `addProduct` and `getProducts`.
 
 ```
 
@@ -80,6 +80,7 @@ The business logic of our store API is contained in two methods.
 Now we need to look at the configuration file where all adapters used by our service and the service itself is configured. 
 The JSON format of the file is not complicated and should be self explanatory.
 Zwróćmy uwagę na najważniejsze dla naszego przykładu elementy.
+
 TODO
 
 Modyfikujemy cricket.json deklarujac standardowy adapter http nasluchujacy na ścieżce /api/store (jak pamiętamy, nasz serwis będzie dostępny pod adresem http://localhost:8080)
