@@ -68,6 +68,7 @@ curl -i http://localhost:8080/api/store/p001
 
 ## Now let's see how this is done 
 
+### Product
 Assuming that you have run the example as described in the previous section, we can look at the Product source code. To keep things simple the code has no getters and setters but it's up to you, as well as adding more fields.
 
 ```
@@ -86,6 +87,7 @@ public class Product {
 }
 ```
 
+### Service
 Then let's look at the service class, one that will be run by the Cricket's runtime. In our example this is StoreService.
 Major part of the code is default for a typical Cricket service, providing event support, logging, key-value database initialization and file readout for embeded http server.
 
@@ -176,6 +178,7 @@ public Object addProduct(Event requestEvent) {
 }
 ```
 
+### Configuration
 The last part of the puzzle is the configuration file where all adapters used by our service and the service itself are configured. The JSON format of the file is not complicated and should be self explanatory.
 ```
 {
@@ -269,6 +272,14 @@ Nasz adapter uzyska dostęp do dedykowanych dla niego metod serwisu dzięki anot
 Rezultat wykonania tych metod zostań następnie przetransformowany do typu application/json i odesłany.
 
 Możemy już przetestować.
+
+### Service components binding
+Probably the reader of the article already realised how the elements of the service are linked together.
+
+In short, the Dependency Injection mechanism in the Cricket framework is controlled in two places:
+* the configuration file defines the late-binding of classes implementing adapters with their interfaces
+* in the service source code, adapters are bound with the handling methods by using annotations
+This approach keeps Dependency Injection magic at the lowest possible level, so that we can quickly realize how the service works.
 
 # Summary
 In the article we saw how to quickly prepare a prototype of the service, taking as an example a simple product store. 
