@@ -183,7 +183,7 @@ The last part of the puzzle is the configuration file where all adapters used by
 ```
 {
     "@type": "org.cricketmsf.config.ConfigSet",
-    "description": "This is sample configuration",
+    "description": "This is a sample configuration",
     "services": [
         {
             "@type": "org.cricketmsf.config.Configuration",
