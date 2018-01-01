@@ -49,12 +49,12 @@ INFO:2018-01-01 12:07:07 +0000: # Started in 104ms. Press Ctrl-C to stop
 ```
 The service exposes our store API at http://localhost:8080/api/store
 
-We can add new product by sending POST request
+We can add new product by sending POST request:
 ```
-curl -d "id=p001&sku=abc123&unit=kg&price=1.5&name=My first product" http://localhost:8080/api/store
+curl -d "id=p001&sku=MPEXPL01&unit=pcs&stock=10.0&price=1.5&name=My first example product" http://localhost:8080/api/store
 ```
-and read all stored products or selected product by sending GET requests
 
+After adding one or more product we can read all store content or selected product by sending GET requests:
 ```
 # read all products
 curl http://localhost:8080/api/store
@@ -64,7 +64,7 @@ curl http://localhost:8080/api/store/p001
 
 ## Now let's see how this is done 
 
-Assuming that you have run the example as described in the previous section, we can look at the Product source Code. To keep Things simple the example has no getters and setters but it's up to you, as well as adding more fields.
+Assuming that you have run the example as described in the previous section, we can look at the Product source code. To keep things simple the code has no getters and setters but it's up to you, as well as adding more fields.
 
 ```
 //Product.java
@@ -74,6 +74,7 @@ public class Product {
     public String name;
     public String sku;
     public String unit;
+    public Double stock;
     public Double unitPrice;
 
     public Product() {
@@ -81,16 +82,15 @@ public class Product {
 }
 ```
 
-Then let's create our service class, one that will be run by the Cricket's runtime. In our example this is StoreService. Let's look inside the file.
-
+Then let's look at the service class, one that will be run by the Cricket's runtime. In our example this is StoreService.
 Major part of the code is default for a typical Cricket service, providing event support, logging, key-value database initialization and file readout for embeded http server.
-The business logic of our store API is contained in two methods: `addProduct` and `getProducts`.
 
+What we are interested in are two methods implementing the store business logic (exposed as the store API): `addProduct` and `getProducts`.
 ```
 
 ```
 
-Now we need to look at the configuration file where all adapters used by our service and the service itself is configured. 
+The last parto of the puzzle is the configuration file where all adapters used by our service and the service itself is configured. 
 The JSON format of the file is not complicated and should be self explanatory.
 Zwróćmy uwagę na najważniejsze dla naszego przykładu elementy.
 
