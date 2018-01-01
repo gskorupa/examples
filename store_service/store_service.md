@@ -32,20 +32,33 @@ javac -cp.:cricket-1.2.33.jar StoreService.java
 # run
 java -cp .:cricket-1.2.33.jar org.cricketmsf.Runner -r -c cricket.json
 ```
+
 If all goes OK the servcice should print on the terminal:
 ```
-aaa
+INFO:2018-01-01 12:07:07 +0000:   __|  \  | __|  Cricket
+INFO:2018-01-01 12:07:07 +0000:  (    |\/ | _|   Microservices Framework
+INFO:2018-01-01 12:07:07 +0000: \___|_|  _|_|    version 1.2.33
+INFO:2018-01-01 12:07:07 +0000: 
+INFO:2018-01-01 12:07:07 +0000: # Service: StoreSvc
+INFO:2018-01-01 12:07:07 +0000: # UUID: a4e600b8-1f1b-4c4b-8deb-4ba73bf96957
+INFO:2018-01-01 12:07:07 +0000: # NAME: CricketService
+INFO:2018-01-01 12:07:07 +0000: #
+INFO:2018-01-01 12:07:07 +0000: # HTTP listening on port 8080
+INFO:2018-01-01 12:07:07 +0000: #
+INFO:2018-01-01 12:07:07 +0000: # Started in 104ms. Press Ctrl-C to stop
 ```
 The service exposes our store API at http://localhost:8080/api/store
 
 We can add new product by sending POST request
 ```
-curl --data="id=p001&sku=abc123&unit=kg&unitPrice=1.5&name='My first product'" http://localhost:8080/api/store
+curl -d "id=p001&sku=abc123&unit=kg&price=1.5&name=My first product" http://localhost:8080/api/store
 ```
 and read all stored products or selected product by sending GET requests
-```
-curl http://localhost:8080/api/store
 
+```
+# read all products
+curl http://localhost:8080/api/store
+# read product with ID equals p001
 curl http://localhost:8080/api/store/p001
 ```
 
