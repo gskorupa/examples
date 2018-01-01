@@ -49,17 +49,18 @@ INFO:2018-01-01 12:07:07 +0000: # Started in 104ms. Press Ctrl-C to stop
 ```
 The service exposes our store API at http://localhost:8080/api/store
 
-We can add new product by sending POST request:
+We can add new product by sending POST request (we can use cURL application to do this):
 ```
-curl -d "id=p001&sku=MPEXPL01&unit=pcs&stock=10.0&price=1.5&name=My first example product" http://localhost:8080/api/store
+curl -i -d "id=p001&sku=MPEXPL01&unit=pcs&stock=10.0&price=1.5&name=My first example product" http://localhost:8080/api/store
 ```
 
 After adding one or more product we can read all store content or selected product by sending GET requests:
 ```
 # read all products
-curl http://localhost:8080/api/store
+curl -i http://localhost:8080/api/store
+
 # read product with ID equals p001
-curl http://localhost:8080/api/store/p001
+curl -i http://localhost:8080/api/store/p001
 ```
 
 ## Now let's see how this is done 
@@ -87,11 +88,174 @@ Major part of the code is default for a typical Cricket service, providing event
 
 What we are interested in are two methods implementing the store business logic (exposed as the store API): `addProduct` and `getProducts`.
 ```
+/**
+ * Provides information about products in the store. 
+ * The search parameter is a product ID which is passed 
+ * as an URL extension related to the context parameter of the StoreService adapter.
+ * This means that if the context is "/api/store" and the URL is "/api/store/p001", 
+ * then the resulting ID will be "p001".
+ * 
+ * @param requestEvent Event object encapsulating HTTP request received by
+ * the StoreService adapter. The method is binded to the adapter using annotation.
+ * 
+ * @return StandardResult object encapsulating a Product or a List of Products, depending 
+ * on request.
+ */
+@HttpAdapterHook(adapterName = "StoreService", requestMethod = "GET")
+public Object getProducts(Event requestEvent) {
+    String productToSearch = requestEvent.getRequest().pathExt;
+    StandardResult result = new StandardResult();
+    result.setCode(HttpAdapter.SC_OK);
+    try {
+        if (!productToSearch.isEmpty()) {
+            // read object with key==productToSearch from database
+            Product product = (Product) database.get("store", productToSearch);
+            if (product != null) {
+                 result.setData(product);
+            } else {
+                result.setCode(HttpAdapter.SC_NOT_FOUND);
+            }
+        } else {
+            ArrayList<Product> list = new ArrayList<>();
+            // read objects stored in the "store" table of the database
+            // and put into list
+            @SuppressWarnings("unchecked")
+            Map<String, Product> map = database.getAll("store");
+            map.keySet().forEach(key -> {
+                list.add((Product) map.get(key));
+            });
+            result.setData(list);
+        }
+    } catch (KeyValueDBException ex) {
+        Kernel.handle(Event.logSevere(this, ex.getMessage()));
+    } catch (ClassCastException ex) {
+        //it shouldn't happen
+        ex.printStackTrace();
+        System.exit(0);
+    }
+    return result;
+}
 
+/**
+ * Creates a Product object based on the request parameters. The product object is stored
+ * in the "store" table of the configured database.  
+ * 
+ * @param requestEvent Event object encapsulating HTTP request received by
+ * the StoreService adapter. The method is binded to the adapter using annotation.
+ * 
+ * @return StandardResult object with response code set according to the method result.
+ */
+@HttpAdapterHook(adapterName = "StoreService", requestMethod = "POST")
+public Object addProduct(Event requestEvent) {
+    StandardResult result = new StandardResult();
+    try {
+        Product product = new Product();
+        product.id = requestEvent.getRequestParameter("id");
+        product.name = requestEvent.getRequestParameter("name");
+        product.sku = requestEvent.getRequestParameter("sku");
+        product.unit = requestEvent.getRequestParameter("unit");
+        product.stock = Double.parseDouble(requestEvent.getRequestParameter("stock"));
+        product.unitPrice = Double.parseDouble(requestEvent.getRequestParameter("price"));
+        // product update requests must be send with PUT not POST method
+        if(database.containsKey("store", product.id)){
+            result.setCode(HttpAdapter.SC_CONFLICT);
+            result.setData(product.id + " already defined");
+        }else{
+            database.put("store", product.id, product);
+            result.setCode(HttpAdapter.SC_CREATED);
+            result.setData(product.id + " added");
+        }
+    } catch (NumberFormatException | KeyValueDBException e) {
+        result.setCode(HttpAdapter.SC_BAD_REQUEST);
+        result.setData(e.getMessage());
+    }
+    return result;
+}
 ```
 
-The last parto of the puzzle is the configuration file where all adapters used by our service and the service itself is configured. 
-The JSON format of the file is not complicated and should be self explanatory.
+The last part of the puzzle is the configuration file where all adapters used by our service and the service itself are configured. The JSON format of the file is not complicated and should be self explanatory.
+```
+{
+    "@type": "org.cricketmsf.config.ConfigSet",
+    "description": "This is sample configuration",
+    "services": [
+        {
+            "@type": "org.cricketmsf.config.Configuration",
+            "id": "StoreSvc",
+            "service": "StoreService",
+            "properties": {
+                "filter": "org.cricketmsf.SecurityFilter",
+                "SRVC_NAME_ENV_VARIABLE": "CRICKET_NAME",
+                "cors": "Access-Control-Allow-Origin:*",
+                "port": "8080",
+                "host": "0.0.0.0",
+                "threads": "0",
+                "keystore": "./data/cricket_publickeystore.jks",
+                "ssl": "false",
+                "keystore-password": "cricket15$#17",
+                "time-zone": "GMT"
+            },
+            "adapters": {
+                "StoreService": {
+                    "@type": "org.cricketmsf.config.AdapterConfiguration",
+                    "name": "StoreService",
+                    "interfaceName": "HttpAdapterIface",
+                    "classFullName": "org.cricketmsf.in.http.StandardHttpAdapter",
+                    "description": "The service class responsible for the product store businness logic.",
+                    "properties": {
+                        "silent-mode": "false",
+                        "context": "/api/store"
+                    }
+                },
+                "Scheduler": {
+                    "@type": "org.cricketmsf.config.AdapterConfiguration",
+                    "name": "Scheduler",
+                    "interfaceName": "SchedulerIface",
+                    "classFullName": "org.cricketmsf.in.scheduler.Scheduler",
+                    "properties": {
+                        "path": ".",
+                        "file": "scheduler.xml",
+                        "envVariable": "SCHEDULER_DB_PATH"
+                    }
+                },
+                "Database": {
+                    "@type": "org.cricketmsf.config.AdapterConfiguration",
+                    "name": "Database",
+                    "interfaceName": "KeyValueDBIface",
+                    "classFullName": "org.cricketmsf.out.db.KeyValueDB",
+                    "properties": {
+                        "path": ".",
+                        "name": "local"
+                    }
+                },
+                "Logger": {
+                    "@type": "org.cricketmsf.config.AdapterConfiguration",
+                    "name": "Logger",
+                    "interfaceName": "LoggerAdapterIface",
+                    "classFullName": "org.cricketmsf.out.log.StandardLogger",
+                    "properties": {
+                        "console": "true",
+                        "log-file-name": "./cricket%g.log",
+                        "level": "FINEST",
+                        "name": "EchoService",
+                        "max-size": "1000000",
+                        "count": "10"
+                    }
+                },
+                "Dispatcher": {
+                    "name": "Dispatcher",
+                    "interfaceName": "DispatcherIface",
+                    "classFullName": "org.cricketmsf.out.EventDispatcherAdapter",
+                    "description": "default dispatcher does nothing",
+                    "properties": {
+                    }
+                }
+            }
+        }
+    ]
+}
+```
+
 Zwróćmy uwagę na najważniejsze dla naszego przykładu elementy.
 
 TODO
