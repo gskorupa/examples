@@ -273,17 +273,17 @@ Rezultat wykonania tych metod zostań następnie przetransformowany do typu appl
 
 Możemy już przetestować.
 
-### Service components binding
+### Components binding
 Probably the reader of the article already realised how the elements of the service are linked together.
 
 In short, the Dependency Injection mechanism in the Cricket framework is controlled in two places:
-* the configuration file defines the late-binding of classes implementing adapters with their interfaces
+* the configuration file defines the late-binding of adapters interfaces with their implementing classes
 * in the service source code, adapters are bound with the handling methods by using annotations
 This approach keeps Dependency Injection magic at the lowest possible level, so that we can quickly realize how the service works.
 
 # Summary
 In the article we saw how to quickly prepare a prototype of the service, taking as an example a simple product store. 
 
-We used a small part of the Cricket framework functionality, such as the built-in HTTP server and key-value database, automatic object serialization by adapters inheriting HttpAdapter and Dependency Injection controlled by a configuration file.
+We used a small part of the Cricket framework functionality, such as the built-in HTTP, key-value database, automatic object serialization by adapters and Dependency Injection controlled by a configuration file.
 
 It would also be nice to have a simple web interface that allows us to use the service through a web browser. But this will be the subject of another article.
