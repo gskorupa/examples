@@ -2,7 +2,7 @@
 
 We will show how simple and fast you can build a basic microservice using Cricket. And I don't mean something that only displays "Hello World", but an almost fully functional prototype with REST API, database and web GUI.
 
-Let's implement a Product store .
+Let's implement a product store .
 
 To do the we will need:
 
@@ -284,6 +284,6 @@ This approach keeps Dependency Injection magic at the lowest possible level, so 
 # Summary
 In the article we saw how to quickly prepare a prototype of the service, taking as an example a simple product store. 
 
-We used a small part of the Cricket framework functionality, such as the built-in HTTP, key-value database, automatic object serialization by adapters and Dependency Injection controlled by a configuration file.
+We used a small part of the Cricket framework functionality, such as the built-in HTTP server, key-value database, automatic object serialization and Dependency Injection controlled by a configuration file.
 
-It would also be nice to have a simple web interface that allows us to use the service through a web browser. But this will be the subject of another article.
+It would also be nice to have a simple web interface that allows us to use the service with a web browser. But this will be the subject of another article.
