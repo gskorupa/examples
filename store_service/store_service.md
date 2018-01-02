@@ -24,23 +24,23 @@ mkdir mystore
 cd mystore
 
 # download library and source codes
-wget https://github.com/gskorupa/Cricket/releases/download/1.2.33/cricket-1.2.33.jar
+wget https://github.com/gskorupa/Cricket/releases/download/1.2.34/cricket-1.2.34.jar
 wget https://github.com/signocom/examples/raw/master/store_service/Product.java
 wget https://github.com/signocom/examples/raw/master/store_service/StoreService.java
 wget https://github.com/signocom/examples/raw/master/store_service/cricket.json
 
 # complie
-javac -cp.:cricket-1.2.33.jar StoreService.java
+javac -cp.:cricket-1.2.34.jar StoreService.java
 
 # run
-java -cp .:cricket-1.2.33.jar org.cricketmsf.Runner -r -c cricket.json
+java -cp .:cricket-1.2.34.jar org.cricketmsf.Runner -r -c cricket.json
 ```
 
 If all goes OK the servcice should print on the terminal:
 ```
 INFO:2018-01-01 12:07:07 +0000:   __|  \  | __|  Cricket
 INFO:2018-01-01 12:07:07 +0000:  (    |\/ | _|   Microservices Framework
-INFO:2018-01-01 12:07:07 +0000: \___|_|  _|_|    version 1.2.33
+INFO:2018-01-01 12:07:07 +0000: \___|_|  _|_|    version 1.2.34
 INFO:2018-01-01 12:07:07 +0000: 
 INFO:2018-01-01 12:07:07 +0000: # Service: StoreSvc
 INFO:2018-01-01 12:07:07 +0000: # UUID: a4e600b8-1f1b-4c4b-8deb-4ba73bf96957
@@ -84,6 +84,8 @@ public class Product {
 
     public Product() {
     }
+    
+    // getters and setters
 }
 ```
 
@@ -106,7 +108,7 @@ What we are interested in are two methods implementing the store business logic 
  * @return StandardResult object encapsulating a Product or a List of Products, depending 
  * on request.
  */
-@HttpAdapterHook(adapterName = "StoreService", requestMethod = "GET")
+@HttpAdapterHook(adapterName = "StoreAPI", requestMethod = "GET")
 public Object getProducts(Event requestEvent) {
     String productToSearch = requestEvent.getRequest().pathExt;
     StandardResult result = new StandardResult();
@@ -150,7 +152,7 @@ public Object getProducts(Event requestEvent) {
  * 
  * @return StandardResult object with response code set according to the method result.
  */
-@HttpAdapterHook(adapterName = "StoreService", requestMethod = "POST")
+@HttpAdapterHook(adapterName = "StoreAPI", requestMethod = "POST")
 public Object addProduct(Event requestEvent) {
     StandardResult result = new StandardResult();
     try {
@@ -261,17 +263,13 @@ The last part of the puzzle is the configuration file where all adapters used by
     ]
 }
 ```
+Let's pay attention to the most important elements for our example.
 
-Zwróćmy uwagę na najważniejsze dla naszego przykładu elementy.
+In the "adapters" section, we have defined an adapter called "StoreAPI". This adapter has a declared compatibility with the HttpAdapterIface interface, which means that Cricket runtime enviromnent:
+* considers it as an inbound adapter type
+* binds it to the embeded HTTP server as handler for "/api/store" context (defined in the adapter properties)
 
-TODO
-
-Modyfikujemy cricket.json deklarujac standardowy adapter http nasluchujacy na ścieżce /api/store (jak pamiętamy, nasz serwis będzie dostępny pod adresem http://localhost:8080)
-
-Nasz adapter uzyska dostęp do dedykowanych dla niego metod serwisu dzięki anotacjom.
-Rezultat wykonania tych metod zostań następnie przetransformowany do typu application/json i odesłany.
-
-Możemy już przetestować.
+As an implementation class of the adapter, we use `org.cricketmsf.in.http.StandardHttpAdapter` offering standard support for incoming requests and automatic serialization of objects transferred by service methods to JSON, XML or CSV format in response. The working adapter finds the right service methods thanks to `@HttpAdapterHook` annotations.
 
 ### Components binding
 Probably the reader of the article already realised how the elements of the service are linked together.
