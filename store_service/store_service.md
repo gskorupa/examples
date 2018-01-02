@@ -11,7 +11,7 @@ To do the we will need:
 * StoreService class - implementing our service logic
 * configuration file
 
-## First the method for the impatient, i.e. microservice in 5 minutes.
+## First the method for the impatient, i.e. microservice in 2 minutes.
 
 * download library and the source codes
 * compile
@@ -30,7 +30,7 @@ wget https://github.com/signocom/examples/raw/master/store_service/StoreService.
 wget https://github.com/signocom/examples/raw/master/store_service/cricket.json
 
 # complie
-javac -cp.:cricket-1.2.34.jar StoreService.java
+javac -cp .:cricket-1.2.34.jar StoreService.java
 
 # run
 java -cp .:cricket-1.2.34.jar org.cricketmsf.Runner -r -c cricket.json
