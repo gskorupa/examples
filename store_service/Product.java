@@ -5,7 +5,7 @@ public class Product {
     public String name;
     public String sku;
     public String unit;
-    public int quantity;
+    public Double stock;
     public Double unitPrice;
 
     public Product() {
