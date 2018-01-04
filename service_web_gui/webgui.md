@@ -3,24 +3,26 @@
 It seems that minimalism while building web interfaces for microservices is a quite reasonable idea.
 
 We will see how to build a web GUI following  requirements:
-* 'mobile first' designed in accordance with RWD
+* 'mobile first' design in accordance with RWD
 * small amount of libraries to download
 * small source  code
 * easy to learn
 
-W poprzednim artykule przygotowaliśmy mikroserwis wykorzystując framework Cricket, ktory teraz wykorzystamy. Natomiast w spełnieniu powyższych założeń pomoże nam zastosowanie
+Following the API-first development approach, we have built the store microservice as described in the previous article. We will use now this service as our backend (business logic). 
 
-* Bootstrap komponent library
+In order to meet the above requirements, we will use.
+* Bootstrap component library
 * RIOT UI library
+* a small dose of JavaScript
 
-## Page ...
+## Page view
 
-Przygotujemy uproszczony templatów strony że stałym menu oraz trzema kartami prezentującym: strona startową,  przeglądarkę produktów oraz formularz dodawania produktu. W tym celu wykorzystam
+Przygotujemy uproszczony template strony że stałym menu oraz trzema kartami prezentującym: strona startową,  przeglądarkę produktów oraz formularz dodawania produktu. W tym celu wykorzystam
 y grid system  bootstrapa.
 
 KOD
 
-## Nawigacja
+## Application logic
 
 Do zaimplementowania nawigacji wykorzystamy bibliotekę Router. Odpowiada ona za ...
 
@@ -30,16 +32,18 @@ KOD
 
 Before the next step we need to run our Store Service as described in the [previous  article](https://www.signocom.com/software-development/microservice-with-java-in-a-flash-not-a-problem-at-all/).
 
-We leave the service going to be able to observe effects of our development  on the fly.
+Do folderu, w którym utworzyliśmy nasz plik Index.html z szablonem strony, pobieramy kod źródłowe s
+erwisu, kompilujemy i uruchamiamy.
 
-Zanim przejdziemy dalej musimy uruchomić nasz Store Service opisany w poprzednim artykule. Do folderu, w którym utworzyliśmy nasz plik Index.html z szablonem strony, pobieramy kod źródłowe s
-erwisu, kompilujemy i uruchamiamy. Pozostawiamy działający serwis, żebyśmy mogli na bieżąco śledzić efekt dalszych zmian.
+We leave the service going to be able to observe effects of our development  on the fly.
 
 KOD
 
 ## JavaScript part
 
 ## Page Components
+
+Komponenty zawierają kod HTML, CSS i JavaScript
 
 ### Page Header
 
