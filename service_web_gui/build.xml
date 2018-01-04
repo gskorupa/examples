@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="ExampleServiceGUI" default="all" basedir="." 
+         xmlns:if="ant:if"
+         xmlns:unless="ant:unless">
+
+    <description></description>
+    <property name="cricket-jar" value="cricket-1.2.34.jar"/>
+
+    <target name="compile" description="compile the source">
+        <!-- Compile the java code from ${src} into ${build} -->
+        <javac 
+            target="1.8" 
+            source="1.8" 
+            srcdir="." 
+            destdir="."
+            includeantruntime="false" 
+            debug="on"
+            classpath=".:${cricket-jar}">
+            <!--<compilerarg value="-Xlint:unchecked"/>-->
+        </javac>
+    </target>
+
+</project>

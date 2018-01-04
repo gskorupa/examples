@@ -1,0 +1,98 @@
+{
+    "@type": "org.cricketmsf.config.ConfigSet",
+    "description": "This is a sample configuration",
+    "services": [
+        {
+            "@type": "org.cricketmsf.config.Configuration",
+            "id": "StoreSvc",
+            "service": "StoreService",
+            "properties": {
+                "filter": "org.cricketmsf.SecurityFilter",
+                "SRVC_NAME_ENV_VARIABLE": "CRICKET_NAME",
+                "cors": "Access-Control-Allow-Origin:*",
+                "port": "8080",
+                "host": "0.0.0.0",
+                "threads": "0",
+                "keystore": "./data/cricket_publickeystore.jks",
+                "ssl": "false",
+                "keystore-password": "cricket15$#17",
+                "time-zone": "GMT"
+            },
+            "adapters": {
+                "StoreAPI": {
+                    "@type": "org.cricketmsf.config.AdapterConfiguration",
+                    "name": "StoreAPI",
+                    "interfaceName": "HttpAdapterIface",
+                    "classFullName": "org.cricketmsf.in.http.StandardHttpAdapter",
+                    "description": "The service class responsible for the product store businness logic.",
+                    "properties": {
+                        "silent-mode": "false",
+                        "context": "/api/store"
+                    }
+                },
+                "Scheduler": {
+                    "@type": "org.cricketmsf.config.AdapterConfiguration",
+                    "name": "Scheduler",
+                    "interfaceName": "SchedulerIface",
+                    "classFullName": "org.cricketmsf.in.scheduler.Scheduler",
+                    "properties": {
+                        "path": ".",
+                        "file": "scheduler.xml",
+                        "envVariable": "SCHEDULER_DB_PATH"
+                    }
+                },
+                "Database": {
+                    "@type": "org.cricketmsf.config.AdapterConfiguration",
+                    "name": "Database",
+                    "interfaceName": "KeyValueDBIface",
+                    "classFullName": "org.cricketmsf.out.db.KeyValueDB",
+                    "properties": {
+                        "path": ".",
+                        "name": "local"
+                    }
+                },
+                "Logger": {
+                    "@type": "org.cricketmsf.config.AdapterConfiguration",
+                    "name": "Logger",
+                    "interfaceName": "LoggerAdapterIface",
+                    "classFullName": "org.cricketmsf.out.log.StandardLogger",
+                    "properties": {
+                        "console": "true",
+                        "log-file-name": "./cricket%g.log",
+                        "level": "FINEST",
+                        "name": "EchoService",
+                        "max-size": "1000000",
+                        "count": "10"
+                    }
+                },
+                "Dispatcher": {
+                    "name": "Dispatcher",
+                    "interfaceName": "DispatcherIface",
+                    "classFullName": "org.cricketmsf.out.EventDispatcherAdapter",
+                    "description": "default dispatcher does nothing",
+                    "properties": {
+                    }
+                },
+                "WWWService": {
+                    "name": "WWWService",
+                    "interfaceName": "HtmlGenAdapterIface",
+                    "classFullName": "org.cricketmsf.in.http.HtmlGenAdapter",
+                    "properties": {
+                        "context": "/",
+                        "use-cache": "false",
+                        "page-processor": "false"
+                    }
+                },
+                "FileReader": {
+                    "name": "FileReader",
+                    "interfaceName": "FileReaderAdapterIface",
+                    "classFullName": "org.cricketmsf.out.file.FileReaderAdapter",
+                    "properties": {
+                        "root": "./www/",
+                        "index-file": "index.html"
+                    }
+                }
+            }
+        }
+    ]
+}
