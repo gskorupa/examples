@@ -15,6 +15,13 @@ In order to meet the above requirements, we will use.
 * RIOT UI library
 * a small dose of JavaScript
 
+Rozwiąznaie które zbudujemy jest naprawdę małe, razem wszystkie pliki zajmują xx kB:
+* Bootrstrap
+* Riot + Router
+* kod webaplikacji
+
+Dodatkową zaletą jest, że oprócz uruchomienia The Strore nie musimy niczego więcej instalować. Wystarczy nam edytor tekstowy i web browser.
+
 ## Page view
 
 Przygotujemy uproszczony template strony że stałym menu oraz trzema kartami prezentującym: strona startową,  przeglądarkę produktów oraz formularz dodawania produktu. W tym celu wykorzystam
