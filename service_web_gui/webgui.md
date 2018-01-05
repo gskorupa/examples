@@ -1,26 +1,28 @@
 # How to build minimalistic web GUI for your microservice
 
-It seems that minimalism while building web interfaces for microservices is a quite reasonable idea.
+It seems that minimalism while building web interfaces for microservices is a quite reasonable idea. We save learning time and development costs, reduce risk of errors due to a smaller code size and fewer libraries used, we make it easier to maintain and reduce the upgrade costs. 
 
-We will see how to build a web GUI following  requirements:
+Of course there are also cons - minimalism probably means a smaller number of cool visual elements. However, if our client accepts clear, ergonomic solutions, which is quite likely in the case of business applications, then we can all be winners.
+
+In the further part of this article we will see how to build a web GUI that meets the following assumptions:
 * 'mobile first' design in accordance with RWD
 * small amount of libraries to download
 * small source  code
 * easy to learn
 
-Following the API-first development approach, we have built the store microservice as described in the previous article. We will use now this service as our backend (business logic). 
+Following the API-first development approach, we have built the store microservice as described in the [previous  article](https://www.signocom.com/software-development/microservice-with-java-in-a-flash-not-a-problem-at-all/). We will use now this service as our backend (business logic). 
 
-In order to meet the above requirements, we will use.
+In order to meet the above requirements, we will use:
 * Bootstrap component library
 * RIOT UI library
 * a small dose of JavaScript
 
-Rozwiąznaie które zbudujemy jest naprawdę małe, razem wszystkie pliki zajmują xx kB:
+The solution we will build is really small, all files together are XX kB. Of which:
 * Bootrstrap
 * Riot + Router
 * kod webaplikacji
 
-Dodatkową zaletą jest, że oprócz uruchomienia The Strore nie musimy niczego więcej instalować. Wystarczy nam edytor tekstowy i web browser.
+An additional advantage is that apart from running the Store Service, we do not need to install anything else. We only need a text editor and a web browser.
 
 ## Page view
 
