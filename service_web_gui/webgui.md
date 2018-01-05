@@ -10,7 +10,7 @@ In the further part of this article we will see how to build a web GUI that meet
 * small source  code
 * easy to learn
 
-Following the API-first development approach, we have built the store microservice as described in the [previous  article](https://www.signocom.com/software-development/microservice-with-java-in-a-flash-not-a-problem-at-all/). We will use now this service as our backend (business logic). 
+Following the API-first development approach, in the [previous  article](https://www.signocom.com/software-development/microservice-with-java-in-a-flash-not-a-problem-at-all/) we have built the store microservice exposing the REST API. We will use now this service as our backend (business logic). 
 
 In order to meet the above requirements, we will use:
 * Bootstrap component library
