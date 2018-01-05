@@ -24,8 +24,76 @@ The solution we will build is really small, all files together are XX kB. Of whi
 An additional advantage is that apart from running the Store Service, we do not need to install anything else. We only need a text editor and a web browser.
 
 ## Page view
+We will prepare a simplified website template that has a permanent menu and two pages: home page and product browser. To get a responsive view we use the Boostrap grid system.
 
-Przygotujemy uproszczony template strony że stałym menu oraz trzema kartami prezentującym: strona startową,  przeglądarkę produktów oraz formularz dodawania produktu. W tym celu wykorzystamy grid system  bootstrapa.
+We will start form the standard Bootstrap template `index.html`file.
+```
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css" integrity="sha384-Zug+QiDoJOrZ5t4lssLdxGhVrurbmBWopoEl+M6BdEfwnCJZtKxi1KgxUyJq13dy" crossorigin="anonymous">
+  </head>
+  <body>
+      <header>
+          <!-- Riot components -->
+      </header>
+      <main>
+          <!-- Riot components -->
+      </main>
+      <footer>
+          <!-- Riot components -->
+      </footer>
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/js/bootstrap.min.js" integrity="sha384-a5N7Y/aK3qNeh15eJKGWxsqtnX/wWdSZSKp+81YjTmS15nvnvxKHuzaWwXHDli+4" crossorigin="anonymous"></script>
+    <!-- end Bootstrap part -->
+    
+    <!-- Riot scripts -->
+    
+  </body>
+</html>
+```
+Then the Riot part: components and scripts. The page body will look like this:
+```
+<body>
+      <header>
+          <app_nav></app_nav>
+      </header>
+      <main>
+          <app_home></app_home>
+          <app_store></app_store>
+      </main>
+      <footer>
+          <app_footer></app_footer>
+      </footer>
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    ....
+    <!-- end of Bootstrap part -->
+    
+    <!-- Riot scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/riot/3.8.1/riot+compiler.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/riot-route@3.1.2/dist/route.min.js"></script>
+    <!-- Application scripts -->
+    <script src="js/routing.js"></script>
+    <script src="js/app.js"></script>
+    <!-- loading Riot tags -->
+    <script data-src="components/app_nav.tag" type="riot/tag"></script>
+    <script data-src="components/app_main.tag" type="riot/tag"></script>
+    <script data-src="components/app_home.tag" type="riot/tag"></script>
+    <script data-src="components/app_store.tag" type="riot/tag"></script>
+    <script data-src="components/app_footer.tag" type="riot/tag"></script>
+    <script data-src="components/app_product.tag" type="riot/tag"></script>
+    <script>
+        riot.mount('*');
+        route.start(true);
+    </script>
+  </body>
+```
+
 
 KOD
 
