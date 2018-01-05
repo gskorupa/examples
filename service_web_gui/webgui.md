@@ -57,7 +57,7 @@ We will start form the standard Bootstrap template `index.html`file.
   </body>
 </html>
 ```
-Then the Riot part: components and scripts. The page body will look like this:
+Then the Riot part: we modify `<!-- Riot components -->` and `<!-- Riot scripts -->` with component tags and script declatations:
 ```
 <body>
       <header>
@@ -93,9 +93,6 @@ Then the Riot part: components and scripts. The page body will look like this:
     </script>
   </body>
 ```
-
-
-KOD
 
 ## Application logic
 Do działania naszej aplikacji potrzebne nam będzie niewiele funkckji: musimy mieć nawigację pomiędzy stronami oraz metody komunikcji z REST API naszego sklepu.
