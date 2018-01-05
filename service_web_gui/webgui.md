@@ -30,10 +30,35 @@ Przygotujemy uproszczony template strony że stałym menu oraz trzema kartami pr
 KOD
 
 ## Application logic
+Do działania naszej aplikacji potrzebne nam będzie niewiele funkckji: musimy mieć nawigację pomiędzy stronami oraz metody komunikcji z REST API naszego sklepu.
 
-Do zaimplementowania nawigacji wykorzystamy bibliotekę Router. Odpowiada ona za ...
+Nawigację rozwiążemy bardzo prosto przy użyciu Riot Router. W tym celu tworzymy plik `routing.js`.
+```
+route(function(id){
+    switch (id){
+        case "store":
+            app.currentPage = "store";
+            break;
+        case "":
+        case "main":
+            app.currentPage = "main";
+            break;
+    }
+    riot.update();
+})
+```
+Metoda `route` jest wywoływana w momencie odwołania się do odnośników zdefiniowanych w menu aplikacji (komponent `app_nav`) i jak widzimy zmienia ona wartość property `currentPage` globalnego obiektu `app`.
+```
+<app_nav>
+    <nav class="nav justify-content-end navbar-dark bg-primary">
+        <a class="nav-link text-white" href="#">Home</a>
+        <a class="nav-link text-white"" href="#store">Products</a>
+    </nav>
+</app_nav>
+```
+Obiekt `app` jest zdefiniowamy w pliku `app.js`. W tym samym pliku znajdują się równiez metody dostępu do REST API: `getData` oraz `sendData`.
 
-KOD
+JAK STERUJEMY WIDOCZNOŚCIĄ?
 
 ## Uruchomienie serwisu
 
