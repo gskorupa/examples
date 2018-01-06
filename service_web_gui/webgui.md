@@ -100,7 +100,7 @@ Then the Riot part: we modify `<!-- Riot components -->` and `<!-- Riot scripts 
 We don't need a lot of code to run our application.  It is enough for us to present components depending on the state of the application and to access data through the service API. The other parts, i. e. the visual side and data presentation, will give us Bootstrap and Riot.
 
 ### Navigation
-Nawigację rozwiążemy bardzo prosto przy użyciu Riot Router. W tym celu tworzymy plik `routing.js`.
+Navigation is very simple with the Riot Router. To do this, we will create a `routing. js` file.
 ```
 route(function(id){
     switch (id){
@@ -115,7 +115,7 @@ route(function(id){
     riot.update();
 })
 ```
-Metoda `route` jest wywoływana w momencie odwołania się do odnośników zdefiniowanych w menu aplikacji (komponent `app_nav`) i jak widzimy zmienia ona wartość property `currentPage` globalnego obiektu `app`.
+The `route` method is called every time when reference is made to links defined in the application menu (component `app_nav`). It changes the property `currentPage` of a global object `app`.
 ```
 <app_nav>
     <nav class="nav justify-content-end navbar-dark bg-primary">
@@ -124,9 +124,11 @@ Metoda `route` jest wywoływana w momencie odwołania się do odnośników zdefi
     </nav>
 </app_nav>
 ```
-Obiekt `app` jest zdefiniowamy w pliku `app.js`. W tym samym pliku znajdują się równiez metody dostępu do REST API: `getData` oraz `sendData`.
+The `app` object is defined in the `app. js` file. In the same file there are also methods of accessing REST API: `getData` and `sendData`.
 
-JAK STERUJEMY WIDOCZNOŚCIĄ?
+### Component visibility
+
+TODO
 
 ### Data access
 TODO
