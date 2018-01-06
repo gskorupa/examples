@@ -25,6 +25,10 @@ The solution we will build is really small, all files together are XX kB. Of whi
 
 An additional advantage is that apart from running the Store Service, we do not need to install anything else. We only need a text editor and a web browser.
 
+## Web application structure
+TODO
+SCREENSHOT
+
 ## Page view
 We will prepare a simplified website template that has a static menu and two pages: home page and product browser. To get a responsive view we use the Boostrap grid system.
 
