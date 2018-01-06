@@ -374,7 +374,7 @@ To be fully functional, our application needs some additional elements such as: 
 
 We saw how quickly and easily we can build responsive webapplications using Bootstrap and Riot libraries.
 
-Using the microservice as a backend logic causes that both parts of the service: frontend and backend are well separated and can easily be developed independently. Assuming that we maintain the compliance of the API used.
+Using the microservice as a backend logic guarantees that both parts of the service: frontend and backend are well separated and can easily be developed independently. Assuming that we maintain the compliance of the API used.
 
 We hope that we have been able to present the usefulness of the "API first" approach and encourage you to try Bootstrap and Riot as a tools for building web applications quickly and efficiently.
 
