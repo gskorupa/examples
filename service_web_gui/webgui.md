@@ -26,6 +26,8 @@ An additional advantage is that apart from running the Store Service, we do not 
 ## Page view
 We will prepare a simplified website template that has a permanent menu and two pages: home page and product browser. To get a responsive view we use the Boostrap grid system.
 
+SCREENSHOTS
+
 We will start form the standard Bootstrap template `index.html`file.
 ```
 <!doctype html>
@@ -95,8 +97,9 @@ Then the Riot part: we modify `<!-- Riot components -->` and `<!-- Riot scripts 
 ```
 
 ## Application logic
-Do działania naszej aplikacji potrzebne nam będzie niewiele funkckji: musimy mieć nawigację pomiędzy stronami oraz metody komunikcji z REST API naszego sklepu.
+We don't need a lot of code to run our application.  It is enough for us to present components depending on the state of the application and to access data through the service API. The other parts, i. e. the visual side and data presentation, will give us Bootstrap and Riot.
 
+### Navigation
 Nawigację rozwiążemy bardzo prosto przy użyciu Riot Router. W tym celu tworzymy plik `routing.js`.
 ```
 route(function(id){
@@ -125,6 +128,9 @@ Obiekt `app` jest zdefiniowamy w pliku `app.js`. W tym samym pliku znajdują si�
 
 JAK STERUJEMY WIDOCZNOŚCIĄ?
 
+### Data access
+TODO
+
 ## Uruchomienie serwisu
 
 Before the next step we need to run our Store Service as described in the [previous  article](https://www.signocom.com/software-development/microservice-with-java-in-a-flash-not-a-problem-at-all/).
@@ -132,25 +138,6 @@ Before the next step we need to run our Store Service as described in the [previ
 Do folderu, w którym utworzyliśmy nasz plik index.html z szablonem strony, pobieramy kod źródłowe serwisu, kompilujemy i uruchamiamy.
 
 We leave the service going to be able to observe effects of our development on the fly.
-
-## JavaScript - routing
-```
-route(function(id){
-    switch (id){
-        case "store":
-            app.currentPage = "store";
-            break;
-        case "":
-        case "main":
-            app.currentPage = "main";
-            break;
-    }
-    riot.update();
-})
-```
-### JavaScript - data access
-```
-```
 
 ## Page Components
 
