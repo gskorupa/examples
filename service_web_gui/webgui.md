@@ -143,7 +143,40 @@ Now, when we have `app.currentPage` dependent of the web application context we 
 ```
 
 ### Data access
-TODO
+The most important part - access to backend data. Using XMLHttpRequest and our getData and sendData methods we communicate with the service API.
+
+Thanks to expressions and loops provided by Riot, we can easily illustrate the result of our query.
+For example, download and view the product list. Let's look at the fragments of the component source code.
+```
+<app_store>
+...
+  <table class="table table-sm" style="margin-top: 10px;">
+    <tr each={ productList }>
+      <td>{ id }</td><td>{ name }</td><td><a href='' title='show details' onclick={ showDetails }>[...]</a></td>
+    </tr>
+  </table>
+...
+<script>
+  ...
+  self.refresh = function(e){
+    // send request to get product list
+    getData('http://localhost:8080/api/store',
+            null,
+            self.updateList, // the callback function called when the data is ready, passing response text
+            app.listener,
+            null
+           )
+  }
+  self.updateList = function (text) {
+    self.productList = JSON.parse(text)
+    self.update() // updates the data visualisation using Riot's `each` loop.
+  }
+  
+</script>
+...
+</app_store>
+```
+I suggest Riot documentation to get information about data visualization methods.
 
 ## Uruchomienie serwisu
 
