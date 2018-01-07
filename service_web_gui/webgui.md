@@ -2,7 +2,7 @@
 
 *NOT FINISHED*
 
-It seems that minimalism while building web interfaces for microservices is a quite reasonable idea. We save learning time and development costs, reduce risk of errors due to a smaller code size and fewer libraries used, we make it easier to maintain and reduce the upgrade costs. 
+It seems that minimalism while building web interfaces for microservices is a quite reasonable idea. We save learning time and development effort, reduce risk of errors due to a smaller code size and fewer libraries used, we make it easier to maintain and reduce the upgrade costs. 
 There are also cons - minimalism probably means a smaller number of cool visual elements. However, if our client accepts clear, ergonomic solutions, which is quite likely in the case of business applications, then we can all be winners.
 
 In the further part of this article we will see how to build a web GUI that meets the following assumptions:
