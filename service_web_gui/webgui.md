@@ -186,10 +186,6 @@ Do folderu, w którym utworzyliśmy nasz plik index.html z szablonem strony, pob
 
 We leave the service going to be able to observe effects of our development on the fly.
 
-## Page Components
-
-Komponenty zawierają kod HTML, CSS i JavaScript
-
 ## What is left to do
 
 To be fully functional, our application needs some additional elements such as: modification and removal of products and user authentication. However, this is the subject of another article.
