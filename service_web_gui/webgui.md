@@ -13,26 +13,26 @@ In the further part of this article we will see how to build a web GUI that meet
 
 Following the API-first development approach, in the [previous  article](https://www.signocom.com/software-development/microservice-with-java-in-a-flash-not-a-problem-at-all/) we have built the store microservice exposing the REST API. We will use now this service as our backend (business logic). 
 
-In order to meet the above requirements, we will use:
+In order to meet the above assumptions, we will use:
 * Bootstrap component library
 * RIOT UI library
 * a small dose of JavaScript
 
-The solution we will build is really small, all files together are XX kB. Of which:
-* Bootrstrap
+The solution we will build is really small, All files together are XX kB. Of which:
+* Bootrstrap TODO
 * Riot + Router
-* kod webaplikacji
+* application Source code
 
 An additional advantage is that apart from running the Store Service, we do not need to install anything else. We only need a text editor and a web browser.
 
 ## Web application structure
 TODO
-SCREENSHOT
+SCREENSHOT: tree view 
 
 ## Page view
-We will prepare a simplified website template that has a static menu and two pages: home page and product browser. To get a responsive view we use the Boostrap grid system.
+We will prepare a simplified website template with static menu and two pages: home page and product browser. To get a responsive view we use the Boostrap grid system.
 
-SCREENSHOTS
+SCREENSHOTS: home, store
 
 We will start form the standard Bootstrap template `index.html`file.
 ```
@@ -178,11 +178,14 @@ For example, download and view the product list. Let's look at the fragments of 
 ```
 I suggest Riot documentation to get information about data visualization methods.
 
-## Uruchomienie serwisu
+## Running web application
+Time to connect all parts  together.
+
+If you haven't done this yet, download the complete source code of the application from githuba. 
 
 Before the next step we need to run our Store Service as described in the [previous  article](https://www.signocom.com/software-development/microservice-with-java-in-a-flash-not-a-problem-at-all/).
 
-Do folderu, w którym utworzyliśmy nasz plik index.html z szablonem strony, pobieramy kod źródłowe serwisu, kompilujemy i uruchamiamy.
+The way the website works is described in the previous article.  The only difference is the addition of an application file server adapter (standard cricket platform adapter) to the configuration file.
 
 We leave the service going to be able to observe effects of our development on the fly.
 
