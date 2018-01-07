@@ -179,15 +179,11 @@ For example, download and view the product list. Let's look at the fragments of 
 I suggest Riot documentation to get information about data visualization methods.
 
 ## Running web application
-Time to connect all parts  together.
+Time to connect all parts  together. If you haven't done this yet, download the complete source code of the application from [GitHub](https://github.com/signocom/examples/tree/master/service_web_gui).
 
-If you haven't done this yet, download the complete source code of the application from githuba. 
+Once loaded you can the complie and run example as described in the [previous  article](https://www.signocom.com/software-development/microservice-with-java-in-a-flash-not-a-problem-at-all/).
 
-Before the next step we need to run our Store Service as described in the [previous  article](https://www.signocom.com/software-development/microservice-with-java-in-a-flash-not-a-problem-at-all/).
-
-The way the website works is described in the previous article.  The only difference is the addition of an application file server adapter (standard cricket platform adapter) to the configuration file.
-
-We leave the service going to be able to observe effects of our development on the fly.
+The way the service works is described in the previous article.  The only difference is the addition of WwwService adapter (standard webserver component of the Cricket platform) to the configuration file. This adapter is serving the files building our application.
 
 ## What is left to do
 
