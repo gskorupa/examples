@@ -89,8 +89,7 @@ Then the Riot part: we modify `<!-- Riot components -->` and `<!-- Riot scripts 
     <script src="js/routing.js"></script>
     <script src="js/app.js"></script>
     <!-- loading Riot tags -->
-    <script data-src="components/app_nav.tag" type="riot/tag"></script>
-    <script data-src="components/app_main.tag" type="riot/tag"></script>
+    <script data-src="components/app_navigation.tag" type="riot/tag"></script>
     <script data-src="components/app_home.tag" type="riot/tag"></script>
     <script data-src="components/app_store.tag" type="riot/tag"></script>
     <script data-src="components/app_footer.tag" type="riot/tag"></script>
