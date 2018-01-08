@@ -7,9 +7,7 @@ var app = {
     "apiURL": 'http://localhost:8080/api/store'
 }
 
-//app.currentPage = "main"
-
-function getData(url, query, callback, eventListener, successEventName, errorEventName) {
+function getData(url, query, callback, eventListener, errorEventName) {
 
     var oReq = new XMLHttpRequest();
     var defaultErrorEventName = "err:";
@@ -21,12 +19,7 @@ function getData(url, query, callback, eventListener, successEventName, errorEve
         if (this.readyState == 4) {
             if (this.status == 200) {
                 app.log(JSON.parse(this.responseText));
-                if (callback != null) {
-                    callback(this.responseText, successEventName);
-                } else {
-                    console.log('no collback')
-                    eventListener.trigger(successEventName);
-                }
+                callback(this.responseText);
             } else {
                 var tmpErrName
                 if (errorEventName == null) {
@@ -43,40 +36,7 @@ function getData(url, query, callback, eventListener, successEventName, errorEve
     return false;
 }
 
-function sendFormData(oFormElement, method, url, callback, eventListener, successEventName, errorEventName) {
-    app.log("sendFormData ...")
-    var oReq = new XMLHttpRequest();
-    var defaultErrorEventName = "err:";
-    oReq.onerror = function (oEvent) {
-        app.log("onerror " + this.status + " " + oEvent.toString())
-        eventListener.trigger("auth"+this.status);
-    }
-    oReq.onreadystatechange = function () {
-        if (this.readyState == 4) {
-            if (this.status == 200 || this.status == 201) {
-                app.log(JSON.parse(this.responseText));
-                if (callback != null) {
-                    callback(this.responseText);
-                } else {
-                    eventListener.trigger(successEventName);
-                }
-            } else {
-                var tmpErrName
-                if (errorEventName == null) {
-                    tmpErrName=defaultErrorEventName + this.status
-                } else {
-                    tmpErrName=errorEventName
-                }
-                eventListener.trigger(tmpErrName);
-            }
-        }
-    }
-    oReq.open(method, url);
-    oReq.send(new FormData(oFormElement));
-    return false;
-}
-
-function sendData(data, method, url, callback, eventListener, successEventName, errorEventName) {
+function sendData(data, method, url, callback, eventListener, errorEventName) {
     app.log("sendData ...")
     var urlEncodedData = "";
     var urlEncodedDataPairs = [];

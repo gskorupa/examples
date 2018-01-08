@@ -54,7 +54,7 @@
         this.productList = []
         this.formTitle = ''
         
-        showDetails(e){
+        self.showDetails = function(e){
             e.preventDefault()
             this.formTitle = 'Product card'
             riot.mount('app_product',{
@@ -65,12 +65,13 @@
             $('#poductModalWindow').modal('show')
         }
         
-        this.hideDetails = function(e){
+        self.hideDetails = function(e){
             console.log('CLOSING FORM')
             $('#poductModalWindow').modal('hide')
+            self.refresh(null)
         }
         
-        addNew(e){
+        self.addNew = function(e){
             this.formTitle = 'New product'
             var newProduct = {id:'',name:'',sku:'',unit:'',price:'',stock:''}
             riot.mount('app_product',{
@@ -87,8 +88,8 @@
             self.update()
         }
         
-        refresh(e){
-            getData('http://localhost:8080/api/store',
+        self.refresh = function(e){
+            getData(app.apiURL,
                     null,
                     self.updateList,
                     app.listener,
